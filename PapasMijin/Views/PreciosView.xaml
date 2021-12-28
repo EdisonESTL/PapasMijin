@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:PapasMijin.ViewModels"
+             x:Class="PapasMijin.Views.PreciosView">
+    <ContentPage.BindingContext>
+        <ViewModel:PreciosVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!" />
+            <Entry Placeholder="0,00 $"
+                   ClearButtonVisibility="WhileEditing"
+                   Keyboard="Numeric"
+                   Text="{Binding Precio, Mode=TwoWay}"/>
+            <Entry Placeholder="Nombre comida"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding comida, Mode=TwoWay}"/>
+            <Button Text="Guardar" 
+                    Command="{Binding Guardar}"/>
+            <Button Text="Cancelar"
+                    Command="{Binding Cancelar}"/>
+            <StackLayout>
+                <ListView ItemsSource="{Binding ListaVer}" VerticalOptions="Center" HorizontalOptions="Center"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding  RefreshCommand}"
+                          IsRefreshing="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding nombre}" Detail="{Binding precio}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

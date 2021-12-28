@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:PapasMijin.ViewModels"
+             x:Class="PapasMijin.Views.VentasView">
+    <ContentPage.BindingContext>
+        <ViewModel:VentasVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Button Text="ver" Command="{Binding Verv}"/>
+
+                <CollectionView x:Name="collectionView" ItemsSource="{Binding Venta}" IsGrouped="False" HeightRequest="350">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding fecha}" Grid.Column="0"/>
+                                <Label Text="{Binding nombre}" Grid.Column="1"/>
+                                <Label Text="{Binding precio}" Grid.Column="2"/>
+                                <Label Text="{Binding cantidad}" Grid.Column="3"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label Text="{Binding totalHoy}"/>
+                <Button Text="Borrar Ventas"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
